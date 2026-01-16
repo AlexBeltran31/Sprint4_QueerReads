@@ -13,7 +13,12 @@ return new class extends Migration
     {
         Schema::create('user_books', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('book_id')->constrained()->cascadeOnDelete();
+            $table->enum('status', ['to_read', 'reading', 'finished'])->default('to_read');
             $table->timestamps();
+
+            $table->unique(['user_id', 'book_id']);
         });
     }
 

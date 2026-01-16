@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'pronouns',
     ];
 
     /**
@@ -45,6 +46,7 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    // Relación muchos a muchos con Book
     public function books() {
         return $this->belongsToMany(Book::class, 'user_books')
                     ->withPivot('status')
